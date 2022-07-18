@@ -1,5 +1,5 @@
 import logical_parser
-    x1, x2, x3 = args # add args variables as needed
+import printing
 
 tokenization = {
     'True': True,
@@ -40,17 +40,7 @@ def generate_input(n): # dinamically generates typically ordered truth values
 def generate(n, expr):
     values = generate_input(n)
 
-def print_row(col, result):
-    for k in range(len(col)):
-        if col[k]:
-            print("true ", end=" ")
-        else:
-            print("false", end=" ")
-            
-    print("| {}".format(result))
-
-def print_results(n, values):
-    print_header(n)
+    printing.print_header(n)
 
     results = []
     for j in range(len(values[0])): # lock on a coloumn
@@ -61,7 +51,7 @@ def print_results(n, values):
 
         result = formula(n, col, expr)
         results.append(result) # save results
-        print_row(col, result) # print current row of output
+        printing.print_row(col, result) # print current row of output
 
 vars = 3
 values = generate_input(vars)
