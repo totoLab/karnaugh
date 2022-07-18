@@ -52,7 +52,3 @@ def generate(n, expr):
         result = formula(n, col, expr)
         results.append(result) # save results
         printing.print_row(col, result) # print current row of output
-
-vars = 3
-values = generate_input(vars)
-print_results(vars, values)
