@@ -1,3 +1,5 @@
+# Credits to @mlvljr who posted this answer on SO https://stackoverflow.com/a/2472414
+
 tokenization = {
     'True': True,
     'False': False,
