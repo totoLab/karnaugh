@@ -37,10 +37,10 @@ def generate_input(n): # dinamically generates typically ordered truth values
     
     return col
 
-def generate(n, expr):
+def generate(n, expr, notation):
     values = generate_input(n)
 
-    printing.print_header(n)
+    printing.print_header(n, notation)
 
     results = []
     for j in range(len(values[0])): # lock on a coloumn
@@ -51,4 +51,4 @@ def generate(n, expr):
 
         result = formula(n, col, expr)
         results.append(result) # save results
-        printing.print_row(col, result) # print current row of output
+        printing.print_row(col, result, notation) # print current row of output
