@@ -1,10 +1,25 @@
-def formula(args):
+import logical_parser
     x1, x2, x3 = args # add args variables as needed
-    
-    # assign formula using the above arguments to the ret variable
-    ret = x1 or (x2 and x3)
 
-    return ret
+tokenization = {
+    'True': True,
+    'False': False,
+    'and': lambda left, right: left and right,
+    'or': lambda left, right: left or right,
+    '(': '(',
+    ')': ')'
+}
+
+def formula(n, vars, expr):
+    custom_tokens = {}
+
+    for i in range(n):
+        value = True if vars[i] == 1 else False
+        custom_tokens[f"x{i}"] = value
+    
+    custom_tokens.update(tokenization)
+
+    return logical_parser.nested_bool_eval(expr, custom_tokens)
 
 def generate_input(n): # dinamically generates typically ordered truth values
     col = []
@@ -22,12 +37,8 @@ def generate_input(n): # dinamically generates typically ordered truth values
     
     return col
 
-def print_header(n):
-    string = ""
-    for x in range(n):
-        string += "x" + str(x + 1) + "    "
-    string += "| formula"
-    print(string)
+def generate(n, expr):
+    values = generate_input(n)
 
 def print_row(col, result):
     for k in range(len(col)):
@@ -48,7 +59,7 @@ def print_results(n, values):
             x = values[i][j]
             col.append(x)
 
-        result = formula(tuple(col)) # convert to tuple for unpacking
+        result = formula(n, col, expr)
         results.append(result) # save results
         print_row(col, result) # print current row of output
 
